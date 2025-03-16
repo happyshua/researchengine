@@ -95,7 +95,9 @@ class RequestHandler(SimpleHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    server_address = ('', 8000)
+    import os
+    port = int(os.environ.get('PORT', 8000))
+    server_address = ('', port)
     httpd = ThreadingHTTPServer(server_address, RequestHandler)
-    print('Server running on port 8000')
+    print(f'Server running on port {port}')
     httpd.serve_forever()
